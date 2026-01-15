@@ -1,0 +1,848 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        576,
+        576
+      ],
+      "id": "d605df98-48a5-4300-90bb-87011f6a1b73",
+      "name": "Wait",
+      "webhookId": "d57af9f9-fddf-4338-adaa-b2f12ae78a9a"
+    },
+    {
+      "parameters": {
+        "resource": "Datasets",
+        "datasetId": "={{ $json.defaultDatasetId }}",
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        720
+      ],
+      "id": "8d3b71f6-dbe6-4100-99a3-dd0db2b63ae7",
+      "name": "Get dataset items1",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "MLTFLDjdjUlHUTo5",
+          "name": "Apify account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -880,
+        720
+      ],
+      "id": "88cb1edc-873a-412f-9590-826dbca06c4a",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        512,
+        896
+      ],
+      "id": "53a8c7a3-5597-487d-bf47-412d6e8a3410",
+      "name": "Wait1",
+      "webhookId": "d57af9f9-fddf-4338-adaa-b2f12ae78a9a"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=You are helpful, intelligent resume writing assistant that drafts high converting resumes based on jobs.\n\nThis resume will be added to a Google Doc, so write it in HTML format that I can easily copy/paste. Do not output any backticks (no ```). Your first\ncharacters should be <html>\n"
+            },
+            {
+              "content": "=#Overview\nI'm looking for jobs. Your task is to customise a provided resume using a provided job description.\n\nHere is the job description:\n{{ $('Get dataset items1').item.json.description }}\n\nHere is my resume:\n\n# Lukas Schneider\n\n**Electrical Engineer**\n\n📍 Munich, Germany | 📞 +49 151 23456789 | ✉️ [lukas.schneider@email.com](mailto:lukas.schneider@email.com) | 🔗 linkedin.com/in/lukas-schneider-ee | 🔗 github.com/lukas-schneider-ee\n\n---\n\n## Professional Summary\n\nResults-driven Electrical Engineer with **6+ years of experience** in designing, developing, testing, and maintaining electrical systems for industrial and commercial applications across the EU. Strong background in **power systems, industrial automation, and control engineering**, with proven ability to deliver projects on time and in compliance with **IEC, IEEE, and EU safety standards**. Adept at cross-functional collaboration, troubleshooting complex systems, and continuous improvement.\n\n---\n\n## Core Skills\n\n* Electrical System Design & Analysis\n* Power Systems & Power Electronics\n* Industrial Automation & Control Systems\n* PLC & SCADA Systems\n* Circuit Design (Analog & Digital)\n* Electrical Testing & Commissioning\n* Fault Analysis & Troubleshooting\n* AutoCAD Electrical & EPLAN P8\n* MATLAB / Simulink / Python\n* Compliance with IEC, IEEE, NEC, CE Standards\n* Project Coordination & Technical Documentation\n\n---\n\n## Professional Experience\n\n### Electrical Engineer – Siemens AG\n\n**Munich, Germany | March 2019 – Present**\n\n* Designed and implemented electrical systems for **industrial automation and manufacturing facilities**, improving system efficiency by **18%**.\n* Developed single-line diagrams, wiring schematics, and panel layouts using **EPLAN P8 and AutoCAD Electrical**.\n* Performed load calculations, short-circuit analysis, and protection coordination using **ETAP**.\n* Collaborated with mechanical, software, and safety teams to ensure full CE compliance.\n* Conducted factory acceptance tests (FAT), site acceptance tests (SAT), and commissioning activities across Germany and Austria.\n\n### Junior Electrical Engineer – Schneider Electric\n\n**Berlin, Germany | July 2017 – February 2019**\n\n* Assisted in the design and simulation of low-voltage power distribution and control systems.\n* Supported **PLC programming (Siemens S7)**, panel wiring, and on-site installation activities.\n* Conducted preventive maintenance and fault analysis, reducing unplanned downtime by **22%**.\n* Prepared technical reports, risk assessments, and maintenance documentation in accordance with IEC standards.\n\n---\n\n## Key Projects\n\n### Automated Production Line – Automotive Industry\n\n* Designed a complete **power distribution and control system** for an automated production line.\n* Implemented PLC and SCADA integration using **Siemens TIA Portal**.\n* Achieved a **15% reduction in energy consumption** while meeting all EU safety regulations.\n\n### Renewable Energy Substation Upgrade\n\n* Upgraded protection and control systems for a **20 MW solar power substation**.\n* Performed relay coordination and system testing in compliance with **IEC 61850**.\n* Improved system reliability and reduced fault response time by **30%**.\n\n---\n\n## Education\n\n**Bachelor of Science in Electrical Engineering**\nTechnical University of Munich (TUM), Munich, Germany\n2017\n\n---\n\n## Certifications\n\n* TÜV Certified Electrical Engineer (Germany)\n* Siemens PLC Programming (TIA Portal)\n* AutoCAD Electrical Professional Certification\n* EU Electrical Safety & CE Marking Certification\n\n---\n\n## Technical Tools\n\n* **Software:** AutoCAD Electrical, EPLAN P8, MATLAB, Simulink, ETAP, PSpice, LabVIEW\n* **Hardware:** PLCs (Siemens S7), VFDs, Protection Relays, Sensors, HMIs\n\n---\n\n## Soft Skills\n\n* Analytical Problem Solving\n* Technical Communication & Documentation\n* Cross-Functional Team Collaboration\n* Time Management & Project Coordination\n\n---\n\n## Additional Information\n\n* Willing to travel within the EU: Yes\n* Languages: German (Native), English (Fluent), French (Basic)\n* Work Authorization: EU Citizen\n\n---\n\n**References available upon request**\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        864,
+        896
+      ],
+      "id": "10db9ad2-aed8-4362-8554-9b7e109e5689",
+      "name": "Create a Custom Resume for a specific job",
+      "alwaysOutputData": false,
+      "credentials": {
+        "openAiApi": {
+          "id": "u5Hw89viMxs6XmKw",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=You're an intelligent bot perfect at creating cover letters for a job. Please take the candidates resume and create a customized cover letter to the job.\n"
+            },
+            {
+              "content": "=Here's the job listing details:\nJobTitle: {{ $('Get dataset items1').item.json.job_title }}\nCompany name: {{ $('Get dataset items1').item.json.company }}\nDescription: {{ $('Get dataset items1').item.json.description }}\nLocation: {{ $('Get dataset items1').item.json.location }}\nSalary: {{ $('Get dataset items1').item.json.salary }}\nJob type: {{ $('Get dataset items1').item.json.work_type }}\n\nHere is the candidate skill set:\nSAMPLE RESUME\n\n# Lukas Schneider\n\n**Electrical Engineer**\n\n📍 Munich, Germany | 📞 +49 151 23456789 | ✉️ [lukas.schneider@email.com](mailto:lukas.schneider@email.com) | 🔗 linkedin.com/in/lukas-schneider-ee | 🔗 github.com/lukas-schneider-ee\n\n---\n\n## Professional Summary\n\nResults-driven Electrical Engineer with **6+ years of experience** in designing, developing, testing, and maintaining electrical systems for industrial and commercial applications across the EU. Strong background in **power systems, industrial automation, and control engineering**, with proven ability to deliver projects on time and in compliance with **IEC, IEEE, and EU safety standards**. Adept at cross-functional collaboration, troubleshooting complex systems, and continuous improvement.\n\n---\n\n## Core Skills\n\n* Electrical System Design & Analysis\n* Power Systems & Power Electronics\n* Industrial Automation & Control Systems\n* PLC & SCADA Systems\n* Circuit Design (Analog & Digital)\n* Electrical Testing & Commissioning\n* Fault Analysis & Troubleshooting\n* AutoCAD Electrical & EPLAN P8\n* MATLAB / Simulink / Python\n* Compliance with IEC, IEEE, NEC, CE Standards\n* Project Coordination & Technical Documentation\n\n---\n\n## Professional Experience\n\n### Electrical Engineer – Siemens AG\n\n**Munich, Germany | March 2019 – Present**\n\n* Designed and implemented electrical systems for **industrial automation and manufacturing facilities**, improving system efficiency by **18%**.\n* Developed single-line diagrams, wiring schematics, and panel layouts using **EPLAN P8 and AutoCAD Electrical**.\n* Performed load calculations, short-circuit analysis, and protection coordination using **ETAP**.\n* Collaborated with mechanical, software, and safety teams to ensure full CE compliance.\n* Conducted factory acceptance tests (FAT), site acceptance tests (SAT), and commissioning activities across Germany and Austria.\n\n### Junior Electrical Engineer – Schneider Electric\n\n**Berlin, Germany | July 2017 – February 2019**\n\n* Assisted in the design and simulation of low-voltage power distribution and control systems.\n* Supported **PLC programming (Siemens S7)**, panel wiring, and on-site installation activities.\n* Conducted preventive maintenance and fault analysis, reducing unplanned downtime by **22%**.\n* Prepared technical reports, risk assessments, and maintenance documentation in accordance with IEC standards.\n\n---\n\n## Key Projects\n\n### Automated Production Line – Automotive Industry\n\n* Designed a complete **power distribution and control system** for an automated production line.\n* Implemented PLC and SCADA integration using **Siemens TIA Portal**.\n* Achieved a **15% reduction in energy consumption** while meeting all EU safety regulations.\n\n### Renewable Energy Substation Upgrade\n\n* Upgraded protection and control systems for a **20 MW solar power substation**.\n* Performed relay coordination and system testing in compliance with **IEC 61850**.\n* Improved system reliability and reduced fault response time by **30%**.\n\n---\n\n## Education\n\n**Bachelor of Science in Electrical Engineering**\nTechnical University of Munich (TUM), Munich, Germany\n2017\n\n---\n\n## Certifications\n\n* TÜV Certified Electrical Engineer (Germany)\n* Siemens PLC Programming (TIA Portal)\n* AutoCAD Electrical Professional Certification\n* EU Electrical Safety & CE Marking Certification\n\n---\n\n## Technical Tools\n\n* **Software:** AutoCAD Electrical, EPLAN P8, MATLAB, Simulink, ETAP, PSpice, LabVIEW\n* **Hardware:** PLCs (Siemens S7), VFDs, Protection Relays, Sensors, HMIs\n\n---\n\n## Soft Skills\n\n* Analytical Problem Solving\n* Technical Communication & Documentation\n* Cross-Functional Team Collaboration\n* Time Management & Project Coordination\n\n---\n\n## Additional Information\n\n* Willing to travel within the EU: Yes\n* Languages: German (Native), English (Fluent), French (Basic)\n* Work Authorization: EU Citizen\n\n---\n\n**References available upon request**\n"
+            }
+          ]
+        },
+        "simplify": "=Please return JSON data structured\nthe following way:\n{\n\"cover_letter\": \"\"\n}",
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        800,
+        576
+      ],
+      "id": "9be39bd6-67ce-4bd4-941e-a5b7a04d19dc",
+      "name": "Create a Cover letter",
+      "alwaysOutputData": false,
+      "credentials": {
+        "openAiApi": {
+          "id": "u5Hw89viMxs6XmKw",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "html": "={{ $json.output[0].content[0].text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        512,
+        1088
+      ],
+      "id": "f19b6b51-3bb3-4003-9782-083d3a38f453",
+      "name": "Markdown"
+    },
+    {
+      "parameters": {
+        "folderId": "default",
+        "title": "=CV_Vladislav_{{ $('Get dataset items1').item.json.company }}"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        656,
+        1088
+      ],
+      "id": "579899a2-7484-4a83-b761-1fb05fe93ba8",
+      "name": "Create a document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "gx9zryPeSdTUAZbb",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://www.googleapis.com/upload/drive/v3/files/{{ $json.documentId }}? uploadType=media ",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDocsOAuth2Api",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n\"Content-Type\":\"text/html\"\n}",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "text/html",
+        "body": "={{ $('Markdown').item.json.output[0].content[0].text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        976,
+        1088
+      ],
+      "id": "2edf51af-42db-479b-996f-af9158c9471e",
+      "name": "HTTP Request",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "gx9zryPeSdTUAZbb",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1aG6de6AwEeZfH2PstZUUxYAunPcoRXma3uNqILkqXoA",
+          "mode": "list",
+          "cachedResultName": "Resume Creator",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1aG6de6AwEeZfH2PstZUUxYAunPcoRXma3uNqILkqXoA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Лист1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1aG6de6AwEeZfH2PstZUUxYAunPcoRXma3uNqILkqXoA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Company name": "={{ $('Get dataset items1').item.json.company }}",
+            "Job Title": "={{ $('Get dataset items1').item.json.job_title }}",
+            "Job Link": "={{ $('Get dataset items1').item.json.job_url }}",
+            "Post Day": "={{ $('Get dataset items1').item.json.posted_at }}",
+            "№ Applicants": "={{ $('Get dataset items1').item.json.applicant_count }}",
+            "Resume Link": "=https://docs.google.com/document/d/{{ $('Update a document').item.json.documentId }}"
+          },
+          "matchingColumns": [
+            "Job Link"
+          ],
+          "schema": [
+            {
+              "id": "Job Title",
+              "displayName": "Job Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Seniority Level",
+              "displayName": "Seniority Level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Post Day",
+              "displayName": "Post Day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Job Link",
+              "displayName": "Job Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "№ Applicants",
+              "displayName": "№ Applicants",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company name",
+              "displayName": "Company name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resume Link",
+              "displayName": "Resume Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1136,
+        1088
+      ],
+      "id": "4e63c657-92ae-4b3f-b739-e57e2d62661f",
+      "name": "Append or update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "inslZXfQCWbhq7jf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1h2quidq3gRLi-NvEvkXudD65vyTQ7r2SwE6VcfQRcC8",
+          "mode": "list",
+          "cachedResultName": "Cover Letter Creator",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1h2quidq3gRLi-NvEvkXudD65vyTQ7r2SwE6VcfQRcC8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1h2quidq3gRLi-NvEvkXudD65vyTQ7r2SwE6VcfQRcC8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Company Name": "={{ $('Get dataset items1').item.json.company }}",
+            "Link": "={{ $('Get dataset items1').item.json.company_url }}",
+            "Title": "={{ $('Get dataset items1').item.json.job_title }}",
+            "Job Description": "={{ $('Get dataset items1').item.json.description }}",
+            "Platform": "LinkedIn",
+            "Date": "={{ $('Get dataset items1').item.json.posted_at }}",
+            "Cover Letter": "={{ $json.output[0].content[0].text }}",
+            "City": "={{ $('Get dataset items1').item.json.location }}",
+            "Remote": "={{ $('Get dataset items1').item.json.work_type }}",
+            "Salary": "={{ $('Get dataset items1').item.json.salary }}",
+            "Status": "To-Do",
+            "Rating": "={{ $('Filtering criteria and initial CV').item.json.output[0].content[0].text }}"
+          },
+          "matchingColumns": [
+            "Link"
+          ],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Job Description",
+              "displayName": "Job Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Platform",
+              "displayName": "Platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company Name",
+              "displayName": "Company Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cover Letter",
+              "displayName": "Cover Letter",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Remote",
+              "displayName": "Remote",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Salary",
+              "displayName": "Salary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1136,
+        576
+      ],
+      "id": "51baefb9-d7ed-45fe-bbde-3aa8c50d55fe",
+      "name": "Append or update row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "inslZXfQCWbhq7jf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "actorId": {
+          "__rl": true,
+          "value": "KE649tixwpoRnZtJJ",
+          "mode": "list",
+          "cachedResultName": "LinkedIn Jobs Scraper - No Cookies (apimaestro/linkedin-jobs-scraper-api)",
+          "cachedResultUrl": "https://console.apify.com/actors/KE649tixwpoRnZtJJ/input"
+        },
+        "customBody": "{\n    \"date_posted\": \"week\",\n    \"keywords\": \"Electronics\",\n    \"limit\": 2,\n    \"location\": \"Finland\",\n    \"remote\": \"onsite\"\n}",
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        720
+      ],
+      "id": "09605412-63d8-4c1c-999d-200598c11bc0",
+      "name": "Run an Actor1",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "kXBVjzlhOWQPww2J",
+          "name": "Apify account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": 2
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        720
+      ],
+      "id": "e0eb2622-2c1a-43ed-bd5b-d5fae2392cd7",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ $json.id }}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "={{ $('Markdown').item.json.data }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        816,
+        1088
+      ],
+      "id": "bdb5b088-ae4f-46af-9549-4f2bda917f1e",
+      "name": "Update a document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "gx9zryPeSdTUAZbb",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## COVER LETTER CREATOR\n",
+        "height": 208,
+        "width": 752,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        528,
+        528
+      ],
+      "typeVersion": 1,
+      "id": "a93f8e23-9155-4f5e-aaaa-38393a0b0b67",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "\n## **CUSTOM RESUME CREATOR**",
+        "height": 416,
+        "width": 848,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        448,
+        816
+      ],
+      "typeVersion": 1,
+      "id": "3b9103fb-4069-4257-bf4c-988620c18589",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# INPUT\n\n",
+        "height": 336,
+        "width": 688
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -960,
+        560
+      ],
+      "typeVersion": 1,
+      "id": "c626b360-20cb-4a9d-a227-6a6ba34d1d99",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# OUTPUT",
+        "height": 912,
+        "width": 944
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        400,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "401b8f77-6b84-4ad8-a215-d2ffe32cdfdb",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## JOB SCRAPER AND DATABASE FILLING",
+        "height": 256,
+        "width": 448,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -736,
+        624
+      ],
+      "typeVersion": 1,
+      "id": "10b6fd9e-0490-4ccf-989c-34ba6d82d2a7",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=You're an intelligent bot rating how closely a job listing matches a candidate's preferences, on a score of 10.\nPlease add up all the points and create a total out of 10.\n\na) 4 points if the job is an amazing fit for electronics or electrical engineering (skills, projects, tools match very well), 2 points if it mostly matches (partially related to electronics/EE).\n\nb) 3 points if the job is located in one of the preferred countries: Finland, Bulgaria, Sweden, Norway, Latvia, Switzerland, Germany, Netherlands\n\nc) 1 point if the job is an on-site position (you prefer on-site over remote).\n\nd) 1 point if the company offers benefits (any benefits).\n\ne) 1 point if it's full-time (not contract or part-time).\n\nExample:\n\nIf the job mostly fits, is located in Sweden, is on-site, has no benefits, and is not full-time, the total points would be: 6\n\nIf the job fits perfectly, is located in Germany, is not on-site (remote), has a few benefits, and isn't full-time, the total points would be: 8"
+            },
+            {
+              "content": "=Here's the job listing details:\nLocation: {{ $json.location }}\nSalary: {{ $json.salary }}\nJobTitle: {{ $json.job_title }}\nBenefits: {{ $json.benefits }}\nJob type/term: {{ $json.work_type }} (i.e. part time, full time,\ncontract etc)\n{{ $json.description }}\n\nHere is the candidate skill set:\nSAMPLE RESUME\n\n# Lukas Schneider\n\n**Electrical Engineer**\n\n📍 Munich, Germany | 📞 +49 151 23456789 | ✉️ [lukas.schneider@email.com](mailto:lukas.schneider@email.com) | 🔗 linkedin.com/in/lukas-schneider-ee | 🔗 github.com/lukas-schneider-ee\n\n---\n\n## Professional Summary\n\nResults-driven Electrical Engineer with **6+ years of experience** in designing, developing, testing, and maintaining electrical systems for industrial and commercial applications across the EU. Strong background in **power systems, industrial automation, and control engineering**, with proven ability to deliver projects on time and in compliance with **IEC, IEEE, and EU safety standards**. Adept at cross-functional collaboration, troubleshooting complex systems, and continuous improvement.\n\n---\n\n## Core Skills\n\n* Electrical System Design & Analysis\n* Power Systems & Power Electronics\n* Industrial Automation & Control Systems\n* PLC & SCADA Systems\n* Circuit Design (Analog & Digital)\n* Electrical Testing & Commissioning\n* Fault Analysis & Troubleshooting\n* AutoCAD Electrical & EPLAN P8\n* MATLAB / Simulink / Python\n* Compliance with IEC, IEEE, NEC, CE Standards\n* Project Coordination & Technical Documentation\n\n---\n\n## Professional Experience\n\n### Electrical Engineer – Siemens AG\n\n**Munich, Germany | March 2019 – Present**\n\n* Designed and implemented electrical systems for **industrial automation and manufacturing facilities**, improving system efficiency by **18%**.\n* Developed single-line diagrams, wiring schematics, and panel layouts using **EPLAN P8 and AutoCAD Electrical**.\n* Performed load calculations, short-circuit analysis, and protection coordination using **ETAP**.\n* Collaborated with mechanical, software, and safety teams to ensure full CE compliance.\n* Conducted factory acceptance tests (FAT), site acceptance tests (SAT), and commissioning activities across Germany and Austria.\n\n### Junior Electrical Engineer – Schneider Electric\n\n**Berlin, Germany | July 2017 – February 2019**\n\n* Assisted in the design and simulation of low-voltage power distribution and control systems.\n* Supported **PLC programming (Siemens S7)**, panel wiring, and on-site installation activities.\n* Conducted preventive maintenance and fault analysis, reducing unplanned downtime by **22%**.\n* Prepared technical reports, risk assessments, and maintenance documentation in accordance with IEC standards.\n\n---\n\n## Key Projects\n\n### Automated Production Line – Automotive Industry\n\n* Designed a complete **power distribution and control system** for an automated production line.\n* Implemented PLC and SCADA integration using **Siemens TIA Portal**.\n* Achieved a **15% reduction in energy consumption** while meeting all EU safety regulations.\n\n### Renewable Energy Substation Upgrade\n\n* Upgraded protection and control systems for a **20 MW solar power substation**.\n* Performed relay coordination and system testing in compliance with **IEC 61850**.\n* Improved system reliability and reduced fault response time by **30%**.\n\n---\n\n## Education\n\n**Bachelor of Science in Electrical Engineering**\nTechnical University of Munich (TUM), Munich, Germany\n2017\n\n---\n\n## Certifications\n\n* TÜV Certified Electrical Engineer (Germany)\n* Siemens PLC Programming (TIA Portal)\n* AutoCAD Electrical Professional Certification\n* EU Electrical Safety & CE Marking Certification\n\n---\n\n## Technical Tools\n\n* **Software:** AutoCAD Electrical, EPLAN P8, MATLAB, Simulink, ETAP, PSpice, LabVIEW\n* **Hardware:** PLCs (Siemens S7), VFDs, Protection Relays, Sensors, HMIs\n\n---\n\n## Soft Skills\n\n* Analytical Problem Solving\n* Technical Communication & Documentation\n* Cross-Functional Team Collaboration\n* Time Management & Project Coordination\n\n---\n\n## Additional Information\n\n* Willing to travel within the EU: Yes\n* Languages: German (Native), English (Fluent), French (Basic)\n* Work Authorization: EU Citizen\n\n---\n\n**References available upon request**\n"
+            },
+            {
+              "role": "system",
+              "content": "=Please return JSON data structured\nthe following way:\n\n\"score\": 10, //please add up all\npoints out of 10 and add the sum here\n\"reasoning\": \"\" //please calculate\nhow you got to this total\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        32,
+        720
+      ],
+      "id": "9af64647-f78d-43ad-85dd-ce7f4344a578",
+      "name": "Filtering criteria and initial CV",
+      "alwaysOutputData": false,
+      "credentials": {
+        "openAiApi": {
+          "id": "u5Hw89viMxs6XmKw",
+          "name": "OpenAi account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Create a Cover letter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get dataset items1": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Run an Actor1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Create a Custom Resume for a specific job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a Custom Resume for a specific job": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a Cover letter": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Create a document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a document": {
+      "main": [
+        [
+          {
+            "node": "Update a document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run an Actor1": {
+      "main": [
+        [
+          {
+            "node": "Get dataset items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Filtering criteria and initial CV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a document": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtering criteria and initial CV": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "aa45e84a-ec73-4f14-b167-e648d18b079d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0877280ef2e85d7b91c041b3b8d0d14e7927c76fe6a68044fa9b09cb00057bae"
+  },
+  "id": "kiFfyrbqLBCm6FqX",
+  "tags": []
+}
